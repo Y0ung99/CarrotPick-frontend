@@ -1,0 +1,87 @@
+body {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    height: 450px;
+    margin: 0;
+    min-width: 841px;
+}
+
+section {
+    margin: 20px;
+    width: 800px;
+    height: 100%;
+    background-image: url('img/background.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+}
+
+.ui {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 225px;
+}
+
+.endUI {
+    position:absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 400px;
+    height: 200px;
+    background-color: lightgray;
+    margin: 0;
+    transform: translateX(200px);
+    border-radius: 20px;
+    opacity: 85%;
+    font-size: 40px;
+}
+
+.play, 
+.replay {
+    font-size: 40px;
+    background-color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+}
+
+.timer {
+    display: inline-block;
+    text-align: center;
+    font-size: 20px;
+}
+
+.num_carrot {
+    font-size: 50px;
+    text-align: center;
+    width: 70px;
+    height: 70px;
+    background-color: white;
+    border-radius: 40px;
+}
+
+
+
+.timer {
+    background-color: whitesmoke;
+    width: 150px;
+}
+
+.ground {
+    height: 225px;
+    width: 800px;
+    min-width: 800px;
+    border-radius: 0 0 20px 20px;
+}
+
+.bug,
+.carrot {
+    position: absolute;
+    display: inline-block;
+    cursor: pointer;
+}
