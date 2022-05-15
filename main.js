@@ -7,10 +7,11 @@ const ground = document.querySelector('.ground');
 const ui = document.querySelector('.ui');
 const variables = {time: null, carrotCnt: null, clock: null};
 const audios = {alert: null, bg: null, bug: null, carrot:null, win: null};
+const images = {bug: null, carrot: null};
 const pause = document.createElement('button');
 
 function declareVariables() {
-    variables.time = 9;
+    variables.time = 4.0;
     variables.carrotCnt = 9;
     variables.clock = undefined;
 }
@@ -40,16 +41,16 @@ function changePlaytoPauseBtn() {
 }
 
 function playTimer() {
-    timer.innerHTML = `10`;
+    timer.innerHTML = `5`;
     variables.clock = setInterval(() => {
         timer.innerHTML = `${variables.time}`;
-        variables.time--;
+        variables.time = (variables.time - 0.1).toFixed(1);
         if (variables.time < 0) {
             clearInterval(variables.clock);
             timer.innerHTML = '시간초과';
             return gameResult();
         }
-    }, 1000);
+    }, 100);
 }
 
 function obstacleEvents() {
@@ -59,6 +60,8 @@ function obstacleEvents() {
 
 function obstacleCliked(event) {
     if (event.target.dataset.id === 'carrot') {
+        audios.carrot.pause();
+        audios.carrot.currentTime = 0;
         audios.carrot.play();
         event.target.remove();
         carrotNum.innerHTML = --variables.carrotCnt;
@@ -99,7 +102,6 @@ function gameResult(Result = true) {
     !!Result ? Result = 'LOST' : Result = 'WIN';
     if (Result == 'WIN') audios.win.play();
     createEndUI(Result);
-
     const replay = document.querySelector('.replay');
     replay.addEventListener('click', () => {
         reStart();
@@ -119,49 +121,49 @@ function randomXY() {
 function createObstacle() {
     ground.innerHTML = `
     <div class="bug" style="transform: ${randomXY()}" >
-    <img src="/img/bug.png" data-id="bug" alt="bug" />
+    <img src="img/bug.png" data-id="bug" alt="bug" />
     </div>
     <div class="carrot" style="transform: ${randomXY()}">
-    <img src="/img/carrot.png" data-id="carrot" alt="carrot" />
+    <img src="img/carrot.png" data-id="carrot" alt="carrot" />
     </div>
     <div class="bug" style="transform: ${randomXY()}" >
-    <img src="/img/bug.png" data-id="bug" alt="bug" />
+    <img src="img/bug.png" data-id="bug" alt="bug" />
     </div>
     <div class="carrot" style="transform: ${randomXY()}">
-    <img src="/img/carrot.png" data-id="carrot" alt="carrot" />
+    <img src="img/carrot.png" data-id="carrot" alt="carrot" />
     </div>
     <div class="bug" style="transform: ${randomXY()}" >
-    <img src="/img/bug.png" data-id="bug" alt="bug" />
+    <img src="img/bug.png" data-id="bug" alt="bug" />
     </div>
     <div class="carrot" style="transform: ${randomXY()}">
-    <img src="/img/carrot.png" data-id="carrot" alt="carrot" />
+    <img src="img/carrot.png" data-id="carrot" alt="carrot" />
     </div>
     <div class="bug" style="transform: ${randomXY()}" >
-    <img src="/img/bug.png" data-id="bug" alt="bug" />
+    <img src="img/bug.png" data-id="bug" alt="bug" />
     </div>
     <div class="carrot" style="transform: ${randomXY()}">
-    <img src="/img/carrot.png" data-id="carrot" alt="carrot" />
+    <img src="img/carrot.png" data-id="carrot" alt="carrot" />
     </div>
     <div class="bug" style="transform: ${randomXY()}" >
-    <img src="/img/bug.png" data-id="bug" alt="bug" />
+    <img src="img/bug.png" data-id="bug" alt="bug" />
     </div>
     <div class="carrot" style="transform: ${randomXY()}">
-    <img src="/img/carrot.png" data-id="carrot" alt="carrot" />
+    <img src="img/carrot.png" data-id="carrot" alt="carrot" />
     </div>
     <div class="bug" style="transform: ${randomXY()}" >
-    <img src="/img/bug.png" data-id="bug" alt="bug" />
+    <img src="img/bug.png" data-id="bug" alt="bug" />
     </div>
     <div class="carrot" style="transform: ${randomXY()}">
-    <img src="/img/carrot.png" data-id="carrot" alt="carrot" />
+    <img src="img/carrot.png" data-id="carrot" alt="carrot" />
     </div>
     <div class="carrot" style="transform: ${randomXY()}">
-    <img src="/img/carrot.png" data-id="carrot" alt="carrot" />
+    <img src="img/carrot.png" data-id="carrot" alt="carrot" />
     </div>
     <div class="carrot" style="transform: ${randomXY()}">
-    <img src="/img/carrot.png" data-id="carrot" alt="carrot" />
+    <img src="img/carrot.png" data-id="carrot" alt="carrot" />
     </div>
     <div class="carrot" style="transform: ${randomXY()}">
-    <img src="/img/carrot.png" data-id="carrot" alt="carrot" />
+    <img src="img/carrot.png" data-id="carrot" alt="carrot" />
     </div>`
     ;
 }
