@@ -5,7 +5,7 @@ const timer = document.querySelector('.timer');
 const carrotNum = document.querySelector('.num_carrot');
 const ground = document.querySelector('.ground');
 const ui = document.querySelector('.ui');
-const variables = {time: null, carrotCnt: null, clock: null};
+const variables = {time: null, carrotCnt: null, clock: null, move: null};
 const audios = {alert: null, bg: null, bug: null, carrot:null, win: null};
 const images = {bug: null, carrot: null};
 const pause = document.createElement('button');
@@ -14,6 +14,7 @@ function declareVariables() {
     variables.time = 4.0;
     variables.carrotCnt = 9;
     variables.clock = undefined;
+    variables.move = undefined;
 }
 
 function declareAudios() {
@@ -59,6 +60,7 @@ function obstacleEvents() {
 }
 
 function obstacleCliked(event) {
+    
     if (event.target.dataset.id === 'carrot') {
         audios.carrot.pause();
         audios.carrot.currentTime = 0;
@@ -73,6 +75,9 @@ function obstacleCliked(event) {
         event.target.remove();
         return gameResult();
     }
+    else {
+        console.log(event);
+    }
 }
 
 function createEndUI(Result) {
@@ -85,10 +90,29 @@ function createEndUI(Result) {
     ground.append(endUI);
 }
 
+function moveObstacle() {
+    // 좌표를 지정
+    // 벌레들을 좌표로 이동 시킨다
+    // 이동이 끝나면 다시 좌표를 지정
+    const bugs = document.querySelectorAll('.bug');
+    variables.move = setInterval(() => {
+        for(let i = 0; i < bugs.length; i++) {
+            // const moveXY = {transform: randomXY()};
+            // const moveOption = {
+            //     duration: 1000,
+            //     easing: 'linear',
+            // }
+            bugs[i].style.transform = randomXY();
+            bugs[i].style.transition = `transform ease 0.5s 0s`;
+        }     
+    }, 500);
+}
+
 function gameStart() {
     audios.alert.play();
     audios.bg.play();
     createObstacle(); // 당근, 벌레 생성
+    moveObstacle(); // 벌레 움직임
     changePlaytoPauseBtn(); // 플레이 버튼 -> 퍼즈 버튼 
     playTimer(); //  타이머 시작 이벤트
     obstacleEvents();// 당근, 벌레 클릭 이벤트
@@ -98,6 +122,7 @@ function gameResult(Result = true) {
     pause.removeEventListener('click', gameResult);
     ground.removeEventListener('click', obstacleCliked);
     clearInterval(variables.clock);
+    clearInterval(variables.move);
     audios.bg.pause();
     !!Result ? Result = 'LOST' : Result = 'WIN';
     if (Result == 'WIN') audios.win.play();
@@ -115,57 +140,75 @@ function reStart() {
 }
 
 function randomXY() {
-    return `translate(${Math.floor(Math.random() * 740)}px, ${Math.floor(Math.random() * 155)}px);`;
+    return `translate(${Math.floor(Math.random() * 740)}px, ${Math.floor(Math.random() * 155)}px)`;
 }
 
 function createObstacle() {
     ground.innerHTML = `
-    <div class="bug" style="transform: ${randomXY()}" >
-    <img src="img/bug.png" data-id="bug" alt="bug" />
-    </div>
-    <div class="carrot" style="transform: ${randomXY()}">
+    
+    <div class="carrot" data-id="carrot" style="transform: ${randomXY()};">
     <img src="img/carrot.png" data-id="carrot" alt="carrot" />
     </div>
-    <div class="bug" style="transform: ${randomXY()}" >
-    <img src="img/bug.png" data-id="bug" alt="bug" />
+    <div class="bug" data-id="bug" style="transform: ${randomXY()};" >
+    <img src="img/bug.png" data-id="bug" data-pair="0" alt="bug" />
     </div>
-    <div class="carrot" style="transform: ${randomXY()}">
+    <div class="carrot" data-id="carrot" style="transform: ${randomXY()};">
     <img src="img/carrot.png" data-id="carrot" alt="carrot" />
     </div>
-    <div class="bug" style="transform: ${randomXY()}" >
-    <img src="img/bug.png" data-id="bug" alt="bug" />
+    <div class="bug" data-id="bug" style="transform: ${randomXY()};" >
+    <img src="img/bug.png" data-id="bug" data-pair="0" alt="bug" />
     </div>
-    <div class="carrot" style="transform: ${randomXY()}">
+    <div class="carrot" data-id="carrot" style="transform: ${randomXY()};">
     <img src="img/carrot.png" data-id="carrot" alt="carrot" />
     </div>
-    <div class="bug" style="transform: ${randomXY()}" >
-    <img src="img/bug.png" data-id="bug" alt="bug" />
+    <div class="bug" data-id="bug" style="transform: ${randomXY()};" >
+    <img src="img/bug.png" data-id="bug" data-pair="0" alt="bug" />
     </div>
-    <div class="carrot" style="transform: ${randomXY()}">
+    <div class="bug" data-id="bug" style="transform: ${randomXY()};" >
+    <img src="img/bug.png" data-id="bug" data-pair="0" alt="bug" />
+    </div>
+    <div class="carrot" data-id="carrot" style="transform: ${randomXY()};">
     <img src="img/carrot.png" data-id="carrot" alt="carrot" />
     </div>
-    <div class="bug" style="transform: ${randomXY()}" >
-    <img src="img/bug.png" data-id="bug" alt="bug" />
+    <div class="bug" data-id="bug" style="transform: ${randomXY()};" >
+    <img src="img/bug.png" data-id="bug" data-pair="0" alt="bug" />
     </div>
-    <div class="carrot" style="transform: ${randomXY()}">
+    <div class="carrot" data-id="carrot" style="transform: ${randomXY()};">
     <img src="img/carrot.png" data-id="carrot" alt="carrot" />
     </div>
-    <div class="bug" style="transform: ${randomXY()}" >
-    <img src="img/bug.png" data-id="bug" alt="bug" />
+    <div class="bug" data-id="bug" style="transform: ${randomXY()};" >
+    <img src="img/bug.png" data-id="bug" data-pair="0" alt="bug" />
     </div>
-    <div class="carrot" style="transform: ${randomXY()}">
+    <div class="bug" data-id="bug" style="transform: ${randomXY()};" >
+    <img src="img/bug.png" data-id="bug" data-pair="0" alt="bug" />
+    </div>
+    <div class="carrot" data-id="carrot" style="transform: ${randomXY()};">
     <img src="img/carrot.png" data-id="carrot" alt="carrot" />
     </div>
-    <div class="carrot" style="transform: ${randomXY()}">
+    <div class="bug" data-id="bug" style="transform: ${randomXY()};" >
+    <img src="img/bug.png" data-id="bug" data-pair="0" alt="bug" />
+    </div>
+    <div class="carrot" data-id="carrot" style="transform: ${randomXY()};">
     <img src="img/carrot.png" data-id="carrot" alt="carrot" />
     </div>
-    <div class="carrot" style="transform: ${randomXY()}">
+    <div class="bug" data-id="bug" style="transform: ${randomXY()};" >
+    <img src="img/bug.png" data-id="bug" data-pair="0" alt="bug" />
+    </div>
+    <div class="carrot" data-id="carrot" style="transform: ${randomXY()};">
     <img src="img/carrot.png" data-id="carrot" alt="carrot" />
     </div>
-    <div class="carrot" style="transform: ${randomXY()}">
+    <div class="bug" data-id="bug" style="transform: ${randomXY()};" >
+    <img src="img/bug.png" data-id="bug" data-pair="0" alt="bug" />
+    </div>
+    <div class="carrot" data-id="carrot" style="transform: ${randomXY()};">
     <img src="img/carrot.png" data-id="carrot" alt="carrot" />
-    </div>`
-    ;
+    </div>
+    <div class="bug" data-id="bug" style="transform: ${randomXY()};" >
+    <img src="img/bug.png" data-id="bug" data-pair="0" alt="bug" />
+    </div>
+    <div class="bug" data-id="bug" style="transform: ${randomXY()};" >
+    <img src="img/bug.png" data-id="bug" data-pair="0" alt="bug" />
+    </div>`;
 }
 
 play.addEventListener('click', () => {
