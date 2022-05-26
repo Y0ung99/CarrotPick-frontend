@@ -15,12 +15,11 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="style.css" />
-    <script src="main.js" defer></script>
+    <script type="module" src="src/main.js" defer></script>
     <title>당근눌러게임</title>
   </head>
 
   <body>
-    <!-- <i class="fa-solid fa-pause"></i> -->
     <section class="background">
       <div class="ui">
         <button class="play">
@@ -31,7 +30,24 @@
       </div>
       <div class="ground">
       </div>
-      
+    </section>
+    <section class="endUI">
+      <button class="replay"><i class="fa-solid fa-arrow-rotate-left"></i></button>
+      <span class="endText">hi</span>      
+    </section>
+    <section class="ranking">
+      <div class="name_submit">
+        <div class="display_score">남은시간 : 없음</div>
+        <span>닉네임:</span>
+        <form class="submit_score">
+          <input class="ipt_name" type="text">
+          <button class="ipt_btn">기록</button>
+        </form>
+      </div>
+      <div class="users_list">
+        <ul class="users_scores">
+        </ul>
+      </div>
     </section>
   </body>
 </html>

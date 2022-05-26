@@ -1,13 +1,18 @@
 body {
     background-color: black;
     display: flex;
-    justify-content: center;
-    height: 450px;
+    flex-direction: column;
+    align-items: center;
     margin: 0;
-    min-width: 841px;
 }
 
-section {
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.background {
     margin: 20px;
     width: 800px;
     height: 100%;
@@ -26,19 +31,18 @@ section {
 }
 
 .endUI {
-    position:absolute;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     width: 400px;
-    height: 200px;
     background-color: lightgray;
     margin: 0;
-    transform: translateX(200px);
+    transform: translateY(-250px);
     border-radius: 20px;
     opacity: 85%;
     font-size: 40px;
+    visibility: hidden;
 }
 
 .play, 
@@ -48,6 +52,15 @@ section {
     cursor: pointer;
     border: none;
     border-radius: 10px;
+}
+
+.replay {
+    margin-top: 8px;
+}
+
+.endText {
+    font-size: 48px;
+    margin-top: 8px;
 }
 
 .timer {
@@ -82,4 +95,66 @@ section {
     position: absolute;
     display: inline-block;
     cursor: pointer;
+}
+
+
+.ranking {
+    margin: 20px;
+    width: 800px;
+    height: 100%;
+    background-color: white;
+    border-radius: 20px;
+    text-align: center;
+}
+
+
+.name_submit {
+    width: 100%;
+    margin-top: 8px;
+    padding-bottom: 16px;
+    font-size: 20px;
+    border-bottom: 1px solid lightgray;
+}
+
+.display_score {
+    display: inline;
+    border: 2px solid salmon;
+    padding: 4px;
+    border-radius: 10px;
+}
+
+.submit_score {
+    display: inline-block;
+}
+
+.ipt_name {
+    font-size: 20px;
+}
+
+.ipt_btn {
+    font-size: 15px;
+}
+
+.users_list {
+    width: 100%;
+    height: 400px;
+    font-size: 20px;
+    overflow-y: auto;
+}
+
+.line {
+    margin: 0px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid lightgray;
+}
+
+.user {
+    display: inline-block;
+    width:45%;
+
+}
+
+.scores {
+    display: inline-block;
+    width: 45%;
 }
