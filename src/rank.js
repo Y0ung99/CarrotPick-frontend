@@ -7,7 +7,7 @@ export default class Rank {
     }
 
     async importRankJson() {
-        const response = await fetch('https://www.main-bvxea6i-fvlhwr3fwbdkk.au.platformsh.site/rank', {
+        const response = await fetch('https://www.main-bvxea6i-7gdoaw63nhdqe.au.platformsh.site/', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -46,7 +46,7 @@ export default class Rank {
         } else {
             const usersData = {name, score};
             console.log(usersData);
-            fetch('https://www.main-bvxea6i-fvlhwr3fwbdkk.au.platformsh.site/rank', {
+            fetch('https://www.main-bvxea6i-7gdoaw63nhdqe.au.platformsh.site/rank', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
