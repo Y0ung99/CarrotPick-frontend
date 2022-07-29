@@ -7,7 +7,7 @@ export default class Rank {
     }
 
     async importRankJson() {
-        const response = await fetch('https://www.main-bvxea6i-7gdoaw63nhdqe.au.platformsh.site/', {
+        const response = await fetch('https://www.main-bvxea6i-7gdoaw63nhdqe.au.platformsh.site/rank', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
