@@ -5,9 +5,9 @@ import Rank from './rank.js';
 
 const rankSystem = new Rank();
 const game = new GameBuilder()
-.gameDuration(10)
+.gameDuration(8)
 .carrotCount(1)
-.bugCount(10)
+.bugCount(20)
 .build();
 
 

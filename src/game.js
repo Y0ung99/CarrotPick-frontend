@@ -99,14 +99,14 @@ class Game {
 
     playTimer() {
         this.clock = setInterval(() => {
-            this.time = (this.time - 0.1).toFixed(1);
+            this.time = (this.time - 0.01).toFixed(2);
             this.timer.innerHTML = `${this.time}`;
             if (this.time < 0) {
                 clearInterval(this.clock);
                 this.timer.innerHTML = '시간초과';
                 return this.gameResult();
             }
-        }, 100);
+        }, 10);
     }
 
     changePlaytoPauseBtn() {

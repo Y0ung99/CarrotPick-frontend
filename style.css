@@ -150,11 +150,17 @@ ul {
 
 .user {
     display: inline-block;
-    width:45%;
+    width:40%;
 
 }
 
 .scores {
     display: inline-block;
-    width: 45%;
+    width: 30%;
+}
+
+.createdAt {
+    font-size: 12px;
+    display: inline-block;
+    width: 10%;
 }

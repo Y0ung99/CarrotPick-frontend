@@ -6,13 +6,18 @@ export default class Rank {
         this.nickname = document.querySelector('.ipt_name');
     }
 
-    async improtRankJson() {
-        const response = await fetch('./json/rankdata.json');
-        const json = await response.json();
-        return json.users;
+    async importRankJson() {
+        const response = await fetch('http://localhost:8080/rank', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+        return response.json();
     }
 
     displayRank = (users) => {
+        console.log(users);
         this.usersList.innerHTML = users.map(user => this.userHTML(user)).join('');
     }
     
@@ -22,24 +27,26 @@ export default class Rank {
     }
 
     submitScore(rankedtime) {
-        this.submit.addEventListener('click', (event) => {
-            event.preventDefault()
+        this.submit.addEventListener('click', () => {
             this.addLine(rankedtime);
-            
         });
     }
     
     addLine = (rankedtime) => {
         const name = this.nickname.value;
         const score = rankedtime;
-        if (name.length > 19) {
+        if (!name || !score) {
+            alert('닉네임이나 스코어란이 비어있습니다.');
+            return;
+        }
+        if (name.length > 11) {
             this.nickname.value = '';
-            alert('닉네임은 18자 미만이라구~ 벌로 너의 점수는 벌레들이 먹었다구~');
+            alert('닉네임은 10자 이하라구~ 벌로 너의 점수는 벌레들이 먹었다구~');
             return;
         } else {
-            const usersData = {rank_name: name, rank_score: score};
+            const usersData = {name, score};
             console.log(usersData);
-            fetch('ec2-3-34-46-255.ap-northeast-2.compute.amazonaws.com', {
+            fetch('http://localhost:8080/rank', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -50,21 +57,21 @@ export default class Rank {
             .then(data => { console.log('성공', data)})
             .catch(console.error);
 
-            // JSON 파일에 userData 추가
         }
     }
 
     userHTML(user) {
         return `
         <li class="line">
-            <span class="user">${user.rank_name}</span>
-            <span class="scores">${user.rank_score}</span>
+            <span class="user">${user.name}</span>
+            <span class="scores">${user.score}</span>
+            <span class="createdAt">${user.createdAt}</span>
         </li>
         `;
     }
 
     startRankSystem() {
-        this.improtRankJson()
+        this.importRankJson()
         .then(this.displayRank);
     }
 }
