@@ -61,11 +61,13 @@ export default class Rank {
     }
 
     userHTML(user) {
+        const dbDate = new Date(user.createdAt);
+        const koreaDate = `${dbDate.getFullYear()}. ${dbDate.getMonth()+1}. ${dbDate.getDate()}. ${dbDate.getHours()}:${dbDate.getMinutes()}:${dbDate.getSeconds()}`; 
         return `
         <li class="line">
             <span class="user">${user.name}</span>
             <span class="scores">${user.score}</span>
-            <span class="createdAt">${user.createdAt}</span>
+            <span class="createdAt">${koreaDate}</span>
         </li>
         `;
     }
