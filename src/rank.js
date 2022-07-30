@@ -1,9 +1,12 @@
+
+    
 export default class Rank {
     constructor() {
         this.submit = document.querySelector('.ipt_btn');
         this.usersList = document.querySelector('.users_scores');
         this.displayScore = document.querySelector('.display_score');
         this.nickname = document.querySelector('.ipt_name');
+        this.doubleSubmitFlag = false;
     }
 
     async importRankJson() {
@@ -14,6 +17,15 @@ export default class Rank {
             },
         });
         return response.json();
+    }
+
+    doubleSubmitCheck() {
+        if (this.doubleSubmitFlag) {
+            return this.doubleSubmitFlag;
+        } else {
+            this.doubleSubmitFlag = true;
+            return false;
+        }
     }
 
     displayRank = (users) => {
@@ -27,12 +39,14 @@ export default class Rank {
     }
 
     submitScore(rankedtime) {
-        this.submit.addEventListener('click', () => {
+        this.submit.addEventListener('click', (event) => {
+            event.preventDefault();
             this.addLine(rankedtime);
         });
     }
     
     addLine = (rankedtime) => {
+        if(this.doubleSubmitCheck()) return;
         const name = this.nickname.value;
         const score = rankedtime;
         if (!name || !score) {
@@ -43,21 +57,15 @@ export default class Rank {
             this.nickname.value = '';
             alert('닉네임은 10자 이하라구~ 벌로 너의 점수는 벌레들이 먹었다구~');
             return;
-        } else {
-            const usersData = {name, score};
-            console.log(usersData);
-            fetch('https://www.main-bvxea6i-7gdoaw63nhdqe.au.platformsh.site/rank', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(usersData),
-            })
-            .then(response => response.json())
-            .then(data => { console.log('성공', data)})
-            .catch(console.error);
-
         }
+        const usersData = {name, score};
+        fetch('https://www.main-bvxea6i-7gdoaw63nhdqe.au.platformsh.site/rank', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(usersData),
+        });
     }
 
     userHTML(user) {
