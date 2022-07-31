@@ -29,7 +29,6 @@ export default class Rank {
     }
 
     displayRank = (users) => {
-        console.log(users);
         this.usersList.innerHTML = users.map(user => this.userHTML(user)).join('');
     }
     
@@ -40,7 +39,6 @@ export default class Rank {
 
     submitScore(rankedtime) {
         this.submit.addEventListener('click', (event) => {
-            event.preventDefault();
             this.addLine(rankedtime);
         });
     }
