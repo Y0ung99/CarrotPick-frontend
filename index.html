@@ -21,29 +21,36 @@
   </head>
 
   <body>
-    <section class="background">
-      <div class="ui">
-        <button class="play">
-          <i class="fa-solid fa-play"></i>
-        </button>
-        <div class="timer"><span class="timer_text">준비?</span></div>
-        <div class="num_carrot"><span class="carrot_text"></span></span></div>
-      </div>
-      <div class="ground">
-      </div>
-    </section>
-    <section class="endUI">
-      <button class="replay"><i class="fa-solid fa-arrow-rotate-left"></i></button> 
-      <span class="endText"></span>
-    </section>
+    <!-- Game -->
+    <div class="game">
+      <section class="background">
+        <div class="ui">
+          <button class="play">
+            <i class="fa-solid fa-play"></i>
+          </button>
+          <div class="timer"><span class="timer_text">준비?</span></div>
+          <div class="num_carrot"><span class="carrot_text"></span></span></div>
+        </div>
+        <div class="ground">
+        </div>
+        <section class="endUI">
+          <button class="replay"><i class="fa-solid fa-arrow-rotate-left"></i></button> 
+          <span class="endText"></span>
+        </section>
+      </section>
+    </div>
+
+    <!-- Rank -->
     <section class="ranking">
       <div class="name_submit">
         <div class="display_score">남은시간 : 없음</div>
-        <span>닉네임:</span>
-        <form class="submit_score">
-          <input class="ipt_name" type="text">
-          <button class="ipt_btn">기록</button>
-        </form>
+        <div class="form">
+          <span>닉네임:</span>
+          <form class="submit_score">
+            <input class="ipt_name" type="text">
+            <button class="ipt_btn">기록</button>
+          </form>
+        </div>
       </div>
       <div class="users_list">
         <ul class="users_scores">
