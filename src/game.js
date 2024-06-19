@@ -1,3 +1,4 @@
+import Difficulty from './diff.js';
 import EndUI from './endUI.js';
 import Ground from './ground.js';
 import Rank from './rank.js';
@@ -6,22 +7,18 @@ import * as sound from './sound.js';
 const gameFinishBanner = new EndUI();
 const groundEvents = new Ground();
 const rankSystem = new Rank();
+const difficulty = new Difficulty();
 
 export default class GameBuilder {
-    gameDuration(duration) {
-        this.gameDuration = duration;
-        return this;
-    }
-    carrotCount(num) {
-        this.carrotCount = num;
-        return this;
-    }
-    bugCount(num) {
-        this.bugCount = num;
-        return this;
-    }
     build() {
-        return new Game(this.gameDuration, this.carrotCount, this.bugCount);
+        rankSystem.startRankSystem();
+        difficulty.selectorInit();
+        difficulty.bgOnclick();
+        return new Game(
+            difficulty.set["duration"], 
+            difficulty.set["carrot"], 
+            difficulty.set["bug"]
+        );
     }
 }
 
@@ -41,6 +38,14 @@ class Game {
         this.bugCnt = null;
     }
     
+    updateDifficulty() {
+        this.initvalues.time = difficulty.set["duration"];
+        this.initvalues.carrotCnt = difficulty.set["carrot"];
+        this.initvalues.bugCnt = difficulty.set["bug"];
+        sound.updateEffectVolume(difficulty.set["effect"]);
+        sound.updateMusicVolume(difficulty.set["music"]);
+    }
+
     updateScore(score) {
         this.carrotNum.innerHTML = score;
     }
@@ -53,7 +58,7 @@ class Game {
         if (Result == 'WIN') {
             sound.playWin();
             this.rankedtime = this.time;
-            rankSystem.scoreToRanklist(this.rankedtime);  
+            rankSystem.scoreToRanklist(this.rankedtime, this.initvalues.carrotCnt, this.initvalues.bugCnt, this.initvalues.time);  
         }
         gameFinishBanner.showWithResult(Result);
         this.running = false;
@@ -93,6 +98,7 @@ class Game {
     }
 
     reStart() {
+        this.updateDifficulty();
         this.declareVariables();
         this.gameStart();
     }
@@ -128,9 +134,9 @@ class Game {
             this.reStart();
         });
         this.play.addEventListener('click', () => {
+            this.updateDifficulty();
             this.declareVariables();
             this.gameStart();
         })
     }
 }
-

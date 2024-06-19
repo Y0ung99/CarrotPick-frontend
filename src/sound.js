@@ -28,6 +28,17 @@ export function stopBg() {
     stopSound(bgSound);
 }
 
+export function updateMusicVolume(value) {
+    bgSound.volume = value * 0.01;
+}
+
+export function updateEffectVolume(value) {
+    alertSound.volume = value * 0.01;
+    bugSound.volume = value * 0.01;
+    carrotSound.volume = value * 0.01;
+    winSound.volume = value * 0.01;
+}
+
 function playSound(sound) {
     sound.currentTime = 0;
     sound.play();
@@ -36,3 +47,4 @@ function playSound(sound) {
 function stopSound(sound) {
     sound.pause();
 }
+

@@ -32,21 +32,29 @@ export default class Rank {
         this.usersList.innerHTML = users.map((user, index) => this.userHTML(index, user)).join('');
     }
     
-    scoreToRanklist(rankedtime) {
-        this.displayScore.innerHTML = `남은시간 : ${rankedtime}`;
-        this.submitScore(rankedtime);
+    scoreToRanklist(rankedtime, carrotCnt, bugCnt, duration) {
+        const carrotScore = Number(carrotCnt) * 10;
+        const bugScore = bugCnt * 20;
+        const timeScore = (Number(rankedtime) / duration) * 100;
+        const timePanalty = duration * 2;
+        let finalScore = (carrotScore + bugScore + timeScore - timePanalty).toFixed(2);
+        console.log(timeScore, bugScore, carrotScore, Number(carrotCnt));
+        console.log(finalScore);
+        finalScore = finalScore < 0 ? 0 : finalScore;
+        this.displayScore.innerHTML = `스코어 : ${finalScore}`;
+        this.submitScore(finalScore);
     }
 
-    submitScore(rankedtime) {
+    submitScore(finalScore) {
         this.submit.addEventListener('click', () => {
-            this.addLine(rankedtime);
+            this.addLine(finalScore);
         });
     }
     
-    addLine = (rankedtime) => {
+    addLine = (finalScore) => {
         if(this.doubleSubmitCheck()) return;
         const name = this.nickname.value;
-        const score = rankedtime;
+        const score = finalScore;
         if (!name || !score) {
             alert('닉네임이나 스코어란이 비어있습니다.');
             return;
@@ -68,13 +76,13 @@ export default class Rank {
 
     userHTML(index, user) {
         const dbDate = new Date(user.createdAt);
-        const koreaDate = `${dbDate.getFullYear()}년 ${dbDate.getMonth()+1}월 ${dbDate.getDate()}일 ${dbDate.getHours()}시 ${dbDate.getMinutes()}분`; 
+        const koreaDate = `${dbDate.getFullYear()}년 ${dbDate.getMonth()+1}월 ${dbDate.getDate()}일 ${dbDate.getHours() < 10 ? `0${dbDate.getHours()}` : dbDate.getHours()}:${dbDate.getMinutes() < 10 ? `0${dbDate.getMinutes()}` : dbDate.getMinutes()}`; 
         const img = [0, 1, 2].includes(index) ? `<img class="prize" src="img/prize_${index+1}.png" alt="prize_${index+1}"></img>` : `<div class="prize"></div>`;
         return `
         <li class="line">
             ${img}
             <span class="user">${user.name}</span>
-            <span class="scores">${user.score.toFixed(2)}초</span>
+            <span class="scores">${user.score.toFixed(2)}점</span>
             <span class="createdAt">${koreaDate}</span>
         </li>
         `;

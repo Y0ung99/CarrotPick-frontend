@@ -1,65 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      http-equiv="X-UA-Compatible"
-      content="IE=edge"
-    />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-    <meta property="og:title" content="PickCarrot!" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://pickcarrot.netlify.app/" />
-    <meta property="og:image" content="https://pickcarrot.netlify.app/img/og.webp" />
-    <script
-      src="https://kit.fontawesome.com/dd806a9e3d.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="shortcut icon" href="favicon.ico">
-    <link rel="stylesheet" href="style.css" />
-    <script type="module" src="src/main.js" defer></script>
-    <title>PickCarrot!</title>
-  </head>
 
-  <body>
-    <!-- Game -->
-    <div class="game">
-      <section class="background">
-        <div class="ui">
-          <button class="play">
-            <i class="fa-solid fa-play"></i>
-          </button>
-          <div class="timer"><span class="timer_text">준비?</span></div>
-          <div class="num_carrot"><span class="carrot_text"></span></span></div>
-        </div>
-        <div class="ground">
-        </div>
-        <section class="endUI">
-          <button class="replay"><i class="fa-solid fa-arrow-rotate-left"></i></button> 
-          <span class="endText"></span>
-        </section>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta property="og:title" content="PickCarrot!" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://pickcarrot.netlify.app/" />
+  <meta property="og:image" content="https://pickcarrot.netlify.app/img/og.webp" />
+  <script src="https://kit.fontawesome.com/dd806a9e3d.js" crossorigin="anonymous"></script>
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="stylesheet" href="style.css" />
+  <script type="module" src="src/main.js" defer></script>
+  <title>PickCarrot!</title>
+</head>
+
+<body>
+  <!-- Game -->
+  <div class="game">
+    <section class="background">
+      <div class="ui">
+        <button class="play">
+          <i class="fa-solid fa-play"></i>
+        </button>
+        <div class="timer"><span class="timer_text">준비?</span></div>
+        <div class="num_carrot"><span class="carrot_text"></span></span></div>
+      </div>
+      <div class="ground">
+      </div>
+      <section class="endUI">
+        <button class="replay"><i class="fa-solid fa-arrow-rotate-left"></i></button>
+        <span class="endText"></span>
       </section>
+    </section>
+  </div>
+  <!-- Console -->
+  <section class="console">
+    <div class="volume">
+      <div class="volume__configure">
+        <h3>Volume</h3>
+        <li class="volume__item">
+          <div class="volume__music">
+            <p class="description">Music: 100</p>
+            <div class="set__bg">
+              <div class="set__value" data-value="music"></div>
+            </div>
+          </div>
+        </li>
+        <li class="volume__item">
+          <div class="volum__effect">
+            <p class="description">Effect: 100</p>
+            <div class="set__bg">
+              <div class="set__value" data-value="effect"></div>
+            </div>
+          </div>
+        </li>
+      </div>
+    </div>
+    <div class="difficulty">
+      <h3>Difficulty</h3>
+      <div class="difficulty__configure">
+        <li class="difficulty__item">
+          <div class="difficulty__duration">
+            <p class="description">Duration: 1</p>
+            <div class="set__bg">
+              <div class="set__value" data-value="duration"></div>
+            </div>
+          </div>
+        </li>
+        <li class="difficulty__item">
+          <div class="difficulty__carrotcount">
+            <p class="description">Carrots: 1</p>
+            <div class="set__bg">
+              <div class="set__value" data-value="carrot"></div>
+            </div>
+          </div>
+        </li>
+        <li class="difficulty__item">
+          <div class="difficulty__bugcount">
+            <p class="description">Bugs: 1</p>
+            <div class="set__bg">
+              <div class="set__value" data-value="bug"></div>
+            </div>
+          </div>
+        </li>
+      </div>
     </div>
 
-    <!-- Rank -->
-    <section class="ranking">
-      <div class="name_submit">
-        <div class="display_score">남은시간 : 없음</div>
-        <div class="form">
-          <span>닉네임:</span>
-          <form class="submit_score">
-            <input class="ipt_name" type="text">
-            <button class="ipt_btn">기록</button>
-          </form>
-        </div>
+  </section>
+  <!-- Rank -->
+  <section class="ranking">
+    <div class="name_submit">
+      <div class="display_score">스코어 : 없음</div>
+      <div class="form">
+        <span>닉네임:</span>
+        <form class="submit_score">
+          <input class="ipt_name" type="text">
+          <button class="ipt_btn">기록</button>
+        </form>
       </div>
-      <div class="users_list">
-        <ul class="users_scores">
-        </ul>
-      </div>
-    </section>
-  </body>
+    </div>
+    <div class="users_list">
+      <ul class="users_scores">
+      </ul>
+    </div>
+  </section>
+</body>
 </html>

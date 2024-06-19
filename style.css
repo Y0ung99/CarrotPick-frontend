@@ -17,6 +17,17 @@ ul {
     position: relative;
 }
 
+h3 {
+    margin-top: 0;
+}
+
+p {
+    margin: 0;
+}
+
+li {
+    list-style: none;
+}
 .background {
     margin: 20px;
     width: 800px;
@@ -81,7 +92,7 @@ ul {
 .num_carrot {
     font-size: 50px;
     text-align: center;
-    width: 70px;
+    width: 150px;
     height: 70px;
     background-color: white;
     border-radius: 40px;
@@ -100,11 +111,61 @@ ul {
     cursor: pointer;
 }
 
+.console {
+    display: flex;
+    color: white;
+    justify-content: space-around;
+    width: 800px;
+    height: 150px;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.volume__configure,
+.difficulty__configure {
+    width: 200px;
+}
+
+.set__bg {
+    position: relative;
+    background-color: white;
+    width: 100%;
+    height: 3px;
+    cursor: pointer;
+}
+
+.set__value {
+    position: absolute;
+    top: 6px;
+    left: 0%;
+    background-color: black;
+    outline: white solid 1px;
+    border-radius: 10px;
+    width: 10px;
+    height: 10px;
+    transform: translateY(-9px);
+}
+
+.volume {
+    display: flex;
+}
+
+.volume__item, 
+.difficulty__item {
+    margin-bottom: 8px;
+}
+
+.description {
+    text-align: start;
+    margin-bottom: 4px;
+}
+
 .ranking {
     width: 800px;
     background-color: white;
     border-radius: 20px;
     text-align: center;
+    margin-top: 26px;
 }
 
 .name_submit {
@@ -164,7 +225,7 @@ ul {
 }
 
 .scores {
-    width: 58px;
+    width: 140px;
 }
 
 .createdAt {
