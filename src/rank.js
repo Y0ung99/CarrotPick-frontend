@@ -1,5 +1,5 @@
+const host = '';
 
-    
 export default class Rank {
     constructor() {
         this.submit = document.querySelector('.ipt_btn');
@@ -10,7 +10,7 @@ export default class Rank {
     }
 
     async importRankJson() {
-        const response = await fetch('#백엔드엔드포인트/rank', {
+        const response = await fetch(`${host}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -29,7 +29,7 @@ export default class Rank {
     }
 
     displayRank = (users) => {
-        this.usersList.innerHTML = users.map(user => this.userHTML(user)).join('');
+        this.usersList.innerHTML = users.map((user, index) => this.userHTML(index, user)).join('');
     }
     
     scoreToRanklist(rankedtime) {
@@ -38,7 +38,7 @@ export default class Rank {
     }
 
     submitScore(rankedtime) {
-        this.submit.addEventListener('click', (event) => {
+        this.submit.addEventListener('click', () => {
             this.addLine(rankedtime);
         });
     }
@@ -57,7 +57,7 @@ export default class Rank {
             return;
         }
         const usersData = {name, score};
-        fetch('#백엔드엔드포인트/rank', {
+        fetch(`${host}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -66,13 +66,15 @@ export default class Rank {
         });
     }
 
-    userHTML(user) {
+    userHTML(index, user) {
         const dbDate = new Date(user.createdAt);
-        const koreaDate = `${dbDate.getFullYear()}. ${dbDate.getMonth()+1}. ${dbDate.getDate()}. ${dbDate.getHours()}:${dbDate.getMinutes()}:${dbDate.getSeconds()}`; 
+        const koreaDate = `${dbDate.getFullYear()}년 ${dbDate.getMonth()+1}월 ${dbDate.getDate()}일 ${dbDate.getHours()}시 ${dbDate.getMinutes()}분`; 
+        const img = [0, 1, 2].includes(index) ? `<img class="prize" src="img/prize_${index+1}.png" alt="prize_${index+1}"></img>` : `<div class="prize"></div>`;
         return `
         <li class="line">
+            ${img}
             <span class="user">${user.name}</span>
-            <span class="scores">${user.score}</span>
+            <span class="scores">${user.score.toFixed(2)}초</span>
             <span class="createdAt">${koreaDate}</span>
         </li>
         `;

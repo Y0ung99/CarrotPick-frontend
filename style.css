@@ -145,23 +145,29 @@ ul {
 }
 
 .line {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     margin: 0px;
     padding-bottom: 4px;
     border-bottom: 1px solid lightgray;
+    
+}
+
+.prize {
+    width: 45px;
+    height: 45px;
 }
 
 .user {
-    display: inline-block;
-    width:40%;
+    width: 260px;
 }
 
 .scores {
-    display: inline-block;
-    width: 30%;
+    width: 58px;
 }
 
 .createdAt {
-    font-size: 12px;
-    display: inline-block;
-    width: 10%;
+    width: 148px;
+    font-size: 11px;
 }
