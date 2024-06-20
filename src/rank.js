@@ -1,4 +1,4 @@
-const host = '';
+const host = ''; // 랭크시스템 이용을 위해서 입력
 
 export default class Rank {
     constructor() {

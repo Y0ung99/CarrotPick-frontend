@@ -12,11 +12,16 @@
   <script src="https://kit.fontawesome.com/dd806a9e3d.js" crossorigin="anonymous"></script>
   <link rel="shortcut icon" href="favicon.ico">
   <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
   <script type="module" src="src/main.js" defer></script>
   <title>PickCarrot!</title>
 </head>
-
 <body>
+  <header class="header">
+    <img class="logo" src="img/logo.png" alt="logo"><h1>PickCarrot!</h1>
+  </header>
   <!-- Game -->
   <div class="game">
     <section class="background">
@@ -42,7 +47,7 @@
         <h3>Volume</h3>
         <li class="volume__item">
           <div class="volume__music">
-            <p class="description">Music: 100</p>
+            <p class="description">MUSIC: 100</p>
             <div class="set__bg">
               <div class="set__value" data-value="music"></div>
             </div>
@@ -50,7 +55,7 @@
         </li>
         <li class="volume__item">
           <div class="volum__effect">
-            <p class="description">Effect: 100</p>
+            <p class="description">EFFECT: 100</p>
             <div class="set__bg">
               <div class="set__value" data-value="effect"></div>
             </div>
@@ -63,7 +68,7 @@
       <div class="difficulty__configure">
         <li class="difficulty__item">
           <div class="difficulty__duration">
-            <p class="description">Duration: 1</p>
+            <p class="description">DURATION: 1</p>
             <div class="set__bg">
               <div class="set__value" data-value="duration"></div>
             </div>
@@ -71,7 +76,7 @@
         </li>
         <li class="difficulty__item">
           <div class="difficulty__carrotcount">
-            <p class="description">Carrots: 1</p>
+            <p class="description">CARROT: 1</p>
             <div class="set__bg">
               <div class="set__value" data-value="carrot"></div>
             </div>
@@ -79,7 +84,7 @@
         </li>
         <li class="difficulty__item">
           <div class="difficulty__bugcount">
-            <p class="description">Bugs: 1</p>
+            <p class="description">BUG: 1</p>
             <div class="set__bg">
               <div class="set__value" data-value="bug"></div>
             </div>
@@ -87,8 +92,12 @@
         </li>
       </div>
     </div>
-
   </section>
+  <div class="scorecalcdescription">
+    <h3 class="calc__h3">스코어 산정</h3>
+    <p>당근개수 * 10 + 벌레수 * 20 + (남은시간 / 전체시간) * 100 - 전체시간 * 2</p>
+
+  </div>
   <!-- Rank -->
   <section class="ranking">
     <div class="name_submit">

@@ -2,6 +2,10 @@ body {
     background-color: black;
     display: flex;
     flex-direction: column;
+    font-family: "Noto Sans KR", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
     align-items: center;
     margin: 0;
 }
@@ -28,6 +32,19 @@ p {
 li {
     list-style: none;
 }
+
+.header {
+    display: flex;
+    color: white;
+    align-items: center;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 8px;
+}
+
 .background {
     margin: 20px;
     width: 800px;
@@ -66,6 +83,7 @@ li {
 .play, 
 .replay {
     font-size: 40px;
+    width: 60px;
     background-color: white;
     cursor: pointer;
     border: none;
@@ -87,15 +105,17 @@ li {
     border-radius: 16px;
     background-color: whitesmoke;
     width: 150px;
+    padding-bottom: 10px;
 }
 
 .num_carrot {
     font-size: 50px;
     text-align: center;
     width: 150px;
-    height: 70px;
+    height: 50px;
     background-color: white;
     border-radius: 40px;
+    padding-bottom: 30px;
 }
 
 .ground {
@@ -160,12 +180,25 @@ li {
     margin-bottom: 4px;
 }
 
+.scorecalcdescription {
+    text-align: center;
+    color: white;
+    height: 30px;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 30px;
+}
+
+.calc__h3 {
+    margin: 0;
+}
+
 .ranking {
     width: 800px;
     background-color: white;
     border-radius: 20px;
     text-align: center;
-    margin-top: 26px;
+    margin-top: 60px;
 }
 
 .name_submit {
