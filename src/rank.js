@@ -41,6 +41,8 @@ export default class Rank {
         const timeScore = (Number(rankedtime) / duration) * 100;
         const timePanalty = duration * 2;
         let finalScore = (carrotScore + bugScore + timeScore - timePanalty).toFixed(2);
+        console.log(timeScore, bugScore, carrotScore, Number(carrotCnt));
+        console.log(finalScore);
         finalScore = finalScore < 0 ? 0 : finalScore;
         this.displayScore.innerHTML = `스코어 : ${finalScore}`;
         this.submitScore(finalScore);
