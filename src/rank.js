@@ -1,7 +1,7 @@
 import { configDotenv } from 'dotenv';
 configDotenv();
 
-const host = process.env.RANK_API_URL; // 랭크시스템 이용을 위해서 입력
+const host = `https://api.carrotrank.store/rank` // 랭크시스템 이용을 위해서 입력
 
 export default class Rank {
     constructor() {
